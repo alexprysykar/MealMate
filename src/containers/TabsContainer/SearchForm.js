@@ -1,8 +1,10 @@
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import { StyledInput, StyledButton, StyledForm } from './styles';
+import React, { useCallback, useState } from "react";
+import PropTypes from "prop-types";
+import { StyledInput, StyledButton, StyledForm } from "./styles";
+import IngredientsFilter from "./IngredientsFilter";
 
 const SearchForm = ({ onSearch, searchText, setSearchText }) => {
+    const [selectedIngredients, setSelectedIngredients] = useState([]);
     const handleSearch = useCallback(
         (e) => {
             e.preventDefault();
@@ -19,9 +21,12 @@ const SearchForm = ({ onSearch, searchText, setSearchText }) => {
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
             />
-            <StyledButton type="submit">
-                Search
-            </StyledButton>
+            <StyledButton type="submit">Search</StyledButton>
+
+            <IngredientsFilter
+                selectedIngredients={selectedIngredients}
+                handleIngredientChange={setSelectedIngredients}
+            />
         </StyledForm>
     );
 };
