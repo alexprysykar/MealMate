@@ -1,11 +1,4 @@
-import styled from 'styled-components';
-
-export const AppContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
+import styled from "styled-components";
 
 export const StyledInput = styled.input`
   padding: 8px;
@@ -33,4 +26,28 @@ export const StyledForm = styled.form`
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+`;
+
+export const TabsContainerWrapper = styled.div`
+  padding: 20px;
+`;
+
+export const StyledHeader = styled.div`
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+`;
+
+export const StyledSearchSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const StyledSelectWrapper = styled.div`
+  padding: 8px;
+  margin-right: 8px;
+  border-radius: 4px;
 `;

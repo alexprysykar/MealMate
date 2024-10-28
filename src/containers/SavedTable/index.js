@@ -1,33 +1,31 @@
-import React from 'react';
-import { Table } from 'antd';
-
-const dataSource = [
-    {
-        key: '1',
-        name: 'Recipe 1',
-        description: 'Description of Recipe 1',
-    },
-];
+import React from "react";
+import { Table } from "antd";
+import PropTypes from "prop-types";
 
 const columns = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: 'Description',
-        dataIndex: 'description',
-        key: 'description',
-    },
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
+  },
 ];
 
-const SavedTable = () => {
-    return (
-        <div>
-            <Table dataSource={dataSource} columns={columns} />
-        </div>
-    );
+const SavedTable = ({ recipes, loading }) => {
+  return (
+    <div>
+      <Table dataSource={recipes} columns={columns} loading={loading} />
+    </div>
+  );
+};
+
+SavedTable.propTypes = {
+  recipes: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default SavedTable;
