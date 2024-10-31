@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tabs } from "antd";
+import { Button, Tabs } from "antd";
 import SearchForm from "./SearchForm";
 import { getRecipes } from "../../api/recipes";
 import { useRequest } from "ahooks";
@@ -11,9 +11,11 @@ import {
   StyledSearchSection,
   TabsContainerWrapper,
 } from "./styles";
+import AddRecipeModal from "../AddRecipeModal";
 
 const TabsContainer = () => {
   const [searchText, setSearchText] = useState("");
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const { data: recipes, loading, run: fetchRecipes } = useRequest(getRecipes);
 
@@ -40,25 +42,35 @@ const TabsContainer = () => {
   };
 
   return (
-    <TabsContainerWrapper>
-      <StyledHeader>
-        <h1>Meal Mate</h1>
-      </StyledHeader>
+    <>
+      <TabsContainerWrapper>
+        <StyledHeader>
+          <h1>Meal Mate</h1>
+        </StyledHeader>
 
-      <StyledSearchSection>
-        <SearchForm
-          onSearch={handleSearch}
-          searchText={searchText}
-          setSearchText={setSearchText}
+        <StyledSearchSection>
+          <SearchForm
+            onSearch={handleSearch}
+            searchText={searchText}
+            setSearchText={setSearchText}
+          />
+        </StyledSearchSection>
+        <Button type="primary" onClick={() => setIsAddModalOpen(true)}>
+          Add Recipe
+        </Button>
+
+        <Tabs
+          defaultActiveKey={TABS.Feed}
+          items={tabItems}
+          onChange={onTabChange}
         />
-      </StyledSearchSection>
-
-      <Tabs
-        defaultActiveKey={TABS.Feed}
-        items={tabItems}
-        onChange={onTabChange}
+      </TabsContainerWrapper>
+      <AddRecipeModal
+        isOpen={isAddModalOpen}
+        closeHandler={() => setIsAddModalOpen(false)}
+        fetchRecipes={fetchRecipes}
       />
-    </TabsContainerWrapper>
+    </>
   );
 };
 
