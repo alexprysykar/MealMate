@@ -19,3 +19,12 @@ export const addRecipe = async (recipe) => {
     throw error;
   }
 };
+
+export const deleteRecipe = async (id) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/recipes/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
