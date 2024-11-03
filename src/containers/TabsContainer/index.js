@@ -28,7 +28,13 @@ const TabsContainer = () => {
     {
       label: "Feed",
       key: TABS.Feed,
-      children: <FeedTable recipes={recipes} loading={loading} />,
+      children: (
+        <FeedTable
+          recipes={recipes}
+          loading={loading}
+          fetchRecipes={fetchRecipes}
+        />
+      ),
     },
     {
       label: "Saved",

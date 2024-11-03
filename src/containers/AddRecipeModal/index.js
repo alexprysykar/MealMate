@@ -7,12 +7,18 @@ import { addRecipe } from "../../api/recipes";
 const AddRecipeModal = ({ isOpen, closeHandler, fetchRecipes }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  
+  const clearModalValues = () => {
+    setName("");
+    setDescription("");
+  };
 
   const { run: postRecipe } = useRequest(addRecipe, {
     manual: true,
     onSuccess: () => {
       fetchRecipes();
       closeHandler();
+      clearModalValues();
     },
   });
 

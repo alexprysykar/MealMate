@@ -4,9 +4,12 @@ import { Button, Table } from "antd";
 import { deleteRecipe } from "../../api/recipes";
 import { useRequest } from "ahooks";
 
-const FeedTable = ({ recipes, loading }) => {
+const FeedTable = ({ recipes, loading, fetchRecipes }) => {
   const { run: removeRecipe } = useRequest(deleteRecipe, {
     manual: true,
+    onSuccess: () => {
+      fetchRecipes();
+    },
   });
 
   const columns = [
@@ -41,6 +44,7 @@ const FeedTable = ({ recipes, loading }) => {
 FeedTable.propTypes = {
   recipes: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
+  fetchRecipes: PropTypes.func.isRequired,
 };
 
 export default FeedTable;
