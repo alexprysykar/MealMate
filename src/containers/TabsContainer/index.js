@@ -19,9 +19,18 @@ const TabsContainer = () => {
 
   const { data: recipes, loading, run: fetchRecipes } = useRequest(getRecipes);
 
-  const handleSearch = (searchText) => {
-    fetchRecipes();
-    console.log("fetch called", searchText);
+  const handleSearch = (searchTerm) => {
+    let query = "";
+    if (searchTerm) {
+      const encoded = encodeURIComponent(
+        `(contains(Name,'${searchTerm}') or contains(Description,'${searchTerm}'))`
+      );
+      query = `?$filter=${encoded}&$count=true`;
+    } else {
+      query = `?$count=true`;
+    }
+
+    fetchRecipes(query);
   };
 
   const tabItems = [

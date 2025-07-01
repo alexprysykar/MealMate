@@ -15,17 +15,17 @@ const FeedTable = ({ recipes, loading, fetchRecipes }) => {
   const columns = [
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "Name",
+      key: "Name",
     },
     {
       title: "Description",
-      dataIndex: "description",
-      key: "description",
+      dataIndex: "Description",
+      key: "Description",
     },
     {
       title: "Action",
-      key: "action",
+      key: "Action",
       render: (_, record) => (
         <Button type="primary" danger onClick={() => removeRecipe(record.id)}>
           Delete

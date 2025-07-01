@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 const columns = [
   {
     title: "Name",
-    dataIndex: "name",
-    key: "name",
+    dataIndex: "Name",
+    key: "Name",
   },
   {
     title: "Description",
-    dataIndex: "description",
-    key: "description",
+    dataIndex: "Description",
+    key: "Description",
   },
 ];
 
